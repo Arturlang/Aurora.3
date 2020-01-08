@@ -5,6 +5,11 @@
 	set name = "Tie Hair"
 	set desc = "Style your hair."
 	set category = "IC"
+	
+	if(stat || paralysis || stunned || weakened || lying || restrained())
+		to_chat(src, "You cant tie your hair in that state")
+		return
+
 
 	if(h_style)
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
@@ -30,6 +35,10 @@ mob/living/carbon/human/proc/change_monitor()
 	set name = "Change IPC Screen"
 	set desc = "Change the display on your screen."
 	set category = "Abilities"
+	
+	if(alive)
+		to_chat(src, "You cant change your monitors settings while dead.")
+		return
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair/screen_style = facial_hair_styles_list[f_style]
