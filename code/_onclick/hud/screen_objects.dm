@@ -174,7 +174,10 @@
 	add_overlay(image('icons/mob/zone_sel.dmi', "[selecting]"))
 
 /obj/screen/Click(location, control, params)
-	if(!usr)	return 1
+	if(isobserver(usr))
+		return
+	if(!usr)	
+		return 1
 	switch(name)
 		if("toggle")
 			if(usr.hud_used.inventory_shown)
@@ -316,6 +319,8 @@
 		icon_state = "walking"
 
 /obj/screen/movement_intent/Click(location, control, params)
+	if(isobserver(usr))
+		return
 	if(!usr)
 		return 1
 	var/list/modifiers = params2list(params)

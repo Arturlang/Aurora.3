@@ -31,6 +31,8 @@
 	var/is_manifest = 0
 	var/ghost_cooldown = 0
 
+	var/mob/observetarget = null
+
 	var/obj/item/device/multitool/ghost_multitool
 	incorporeal_move = 1
 
@@ -799,6 +801,43 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		choice.visible_message("<span class='warning'>\The [choice] suddenly moves!</span>")
 
 	ghost_cooldown = world.time + 500
+
+/mob/abstract/observer/reset_view(atom/A)
+	if(client)
+		if(ismob(client.eye) && (client.eye != src))
+			var/mob/target = client.eye
+			observetarget = null
+			if(target.observers)
+				target.observers -= src
+				UNSETEMPTY(target.observers)
+	if(..())
+		if(hud_used)
+			client.screen = list()
+
+/mob/abstract/observer/verb/observe()
+	set name = "Observe"
+	set category = "OOC"
+
+	var/list/creatures = getpois()
+
+	reset_view(null)
+
+	var/eye_name = null
+
+	eye_name = input("Please, select a player!", "Observe", null, null) as null|anything in creatures
+
+	if(!eye_name)
+		return
+
+	var/mob/mob_eye = creatures[eye_name]
+	//Istype so we filter out points of interest that are not mobs
+	if(client && mob_eye && istype(mob_eye))
+		client.eye = mob_eye
+		if(mob_eye.hud_used)
+			client.screen = list()
+			LAZYINITLIST(mob_eye.observers)
+			mob_eye.observers |= src
+			observetarget = mob_eye
 
 /mob/abstract/observer/verb/toggle_anonsay()
 	set category = "Ghost"

@@ -239,3 +239,6 @@
 
 	var/authed = TRUE
 	var/player_age = "Requires database"
+	///The list of people observing this mob.
+	var/list/observers = null
+	

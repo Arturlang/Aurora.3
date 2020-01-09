@@ -166,7 +166,8 @@ datum/hud/New(mob/owner)
 	mymob = null
 
 /datum/hud/proc/hidden_inventory_update()
-	if(!mymob) return
+	if(!mymob) 
+		return
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
@@ -252,8 +253,10 @@ datum/hud/New(mob/owner)
 
 
 /datum/hud/proc/instantiate()
-	if(!ismob(mymob)) return 0
-	if(!mymob.client) return 0
+	if(!ismob(mymob)) 
+		return 0
+	if(!mymob.client) 
+		return 0
 	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
