@@ -430,3 +430,11 @@ Define for getting a bitfield of adjacent turfs that meet a condition.
 
 //Lying animation
 #define ANIM_LYING_TIME 2
+
+// Create a list global with an initializer expression
+#define GLOBAL_LIST_INIT(X, InitValue) GLOBAL_RAW(/list/##X); GLOBAL_MANAGED(X, InitValue)
+
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2

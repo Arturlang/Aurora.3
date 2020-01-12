@@ -3,7 +3,7 @@
 #define PLANE_SPACE_DUST (PLANE_SPACE_PARALLAX + 1) // -96
 #define PLANE_ABOVE_PARALLAX (PLANE_SPACE_BACKGROUND + 3) // -95
 
-
+#define GAME_PLANE 0
 #define LOWER_ON_TURF_LAYER (TURF_LAYER + 0.05)	// under the below
 #define ON_TURF_LAYER (TURF_LAYER + 0.1)	// sitting on the turf - should be preferred over direct use of TURF_LAYER
 #define AO_LAYER (ON_TURF_LAYER + 0.1)

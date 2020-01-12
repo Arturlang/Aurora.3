@@ -21,7 +21,7 @@
 #define SLOT_TWOEARS    0x2000
 #define SLOT_TIE        0x4000
 #define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
-
+#define SLOTS_AMT				16 // Keep this up to date!
 // Flags bitmasks.
 #define NOBLUDGEON         0x1   // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
 #define CONDUCT            0x2   // Conducts electricity. (metal etc.)
